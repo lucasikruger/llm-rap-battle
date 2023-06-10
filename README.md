@@ -1,4 +1,4 @@
-# PDF Question Answering Application
+# LLM-RAP-BATTLE
 
 ![Logo](logo.jpg)
 
