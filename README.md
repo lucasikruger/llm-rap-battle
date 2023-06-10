@@ -16,7 +16,7 @@ Or, you can use Docker to run this application. Docker makes it easy to create, 
 Clone the repository using the following command in your terminal:
 
 ```bash
-git clone https://github.com/lucasikruger/PDF-question-answer-llm-langchain-streamlit
+git clone https://github.com/lucasikruger/llm-rap-battle
 ```
 
 
