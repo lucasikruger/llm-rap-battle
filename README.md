@@ -2,8 +2,6 @@
 
 ![Logo](logo.jpg)
 
-This application is an AI-based solution built with Python and Streamlit. It utilizes various libraries like `PyPDF2`, `dotenv`, `FAISS` and OpenAI's `GPT-4` to provide answers to user queries about the content in a PDF document. Users can upload a PDF document and ask questions related to the document. The AI model scans the PDF, extracts relevant information, and responds to user queries in real time.
-
 ## Installation
 You can directly install the requirements.txt using an enviroment.
 
