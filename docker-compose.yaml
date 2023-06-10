@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  llm-battle:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: llm-rap-battle
+    # restart: always
+    ports:
+      - "8501:8501"
+    network_mode:                                    # Network to use
+      "host"
+    volumes:
+      - .:/app
+    command: streamlit run --server.port 8501 app.py 
