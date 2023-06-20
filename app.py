@@ -2,7 +2,9 @@
 import os
 import streamlit as st
 from langchain.llms import HuggingFaceHub, OpenAI
-from llm_rap.mc import *
+from llm_rap.classes.battle import *
+from llm_rap.classes.agent import mc
+from llm_rap.classes.round import round
 
 def load_llm(llm_model):
 	if llm_model == "T5":
@@ -33,10 +35,11 @@ def main():
 		with st.spinner("Loading language model..."):
 			llm = load_llm(llm_model)
 		with st.spinner("Rapping..."):
-			mc = Mc(llm, name, context)
-			response = mc.rap(about)
-		st.text("Your rap answer is:")
-		st.write(response)
+			mc1 : mc = mc(llm_model, name=name, context=context)
+			mc2 : mc = mc(llm_model, name="2mc", context=context)
+			rapBattle : Battle = Battle(mc1, mc2)
+			
+			rapBattle.startBattle(5)
 
 # Run the main function
 if __name__ == '__main__':
