@@ -2,13 +2,15 @@
 import os
 import streamlit as st
 from langchain.llms import HuggingFaceHub, OpenAI
-from llm_rap.classes.battle import *
+from langchain.chains import LLMChain, SimpleSequentialChain
+from langchain.prompts import PromptTemplate
 from llm_rap.classes.agent import mc
+from llm_rap.classes.battle.battle import Battle
 from llm_rap.classes.round import round
 
 def load_llm(llm_model):
 	if llm_model == "T5":
-		llm =HuggingFaceHub(repo_id="google/flan-t5-xl")
+		llm =HuggingFaceHub(repo_id="gpt2")
 	elif llm_model == "GPT-3":
 		llm = OpenAI()
 	return llm
@@ -35,11 +37,15 @@ def main():
 		with st.spinner("Loading language model..."):
 			llm = load_llm(llm_model)
 		with st.spinner("Rapping..."):
-			mc1 : mc = mc(llm_model, name=name, context=context)
-			mc2 : mc = mc(llm_model, name="2mc", context=context)
-			rapBattle : Battle = Battle(mc1, mc2)
+			mc1 = mc.Mc(llm, name=name, context=context, initialTheme=about)
+			mc2 = mc.Mc(llm, name="2mc", context=context, initialTheme=about)
+			rapBattle = Battle(mc1, mc2)
 			
-			rapBattle.startBattle(5)
+			#output1, output2 = rapBattle.startBattle(5)
+		beams = mc1.init_rap()
+		for i, beam in enumerate(beams):
+			st.write(f'i: {i} beam: {beam}')
+		#st.text(output2)
 
 # Run the main function
 if __name__ == '__main__':

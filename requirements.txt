@@ -7,3 +7,4 @@ tiktoken
 streamlit-extras
 altair==4.1.0
 huggingface_hub
+transformers
